@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용 설명서 - 스타일 개선</title>
+    <!-- Google Fonts: Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif; /* 웹 폰트 적용 */
+            line-height: 1.7;
+            background-color: #f4f7f9; /* 부드러운 배경색 */
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        .manual-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 10px; /* 모서리 둥글게 */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* 그림자 효과 */
+            padding: 30px 40px; /* 내부 여백 증가 */
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50; /* 제목 색상 */
+            font-weight: 700; /* 굵은 글씨 */
+            margin-bottom: 30px; /* 제목 아래 여백 */
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0; /* 구분선 */
+        }
+        ol.steps {
+            list-style: none; /* 기본 숫자 제거 */
+            padding: 0;
+            counter-reset: step-counter; /* 카운터 초기화 */
+        }
+        li.step-card {
+            background-color: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px 25px 20px 65px; /* 왼쪽 여백 확보 (숫자 공간) */
+            margin-bottom: 25px;
+            position: relative; /* 숫자 위치 기준 */
+            counter-increment: step-counter; /* 카운터 증가 */
+            transition: box-shadow 0.3s ease; /* 부드러운 효과 */
+        }
+        li.step-card:hover {
+             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 호버 효과 */
+        }
+        /* 스텝 숫자 스타일 */
+        li.step-card::before {
+            content: counter(step-counter); /* 카운터 숫자 표시 */
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: #3498db; /* 숫자의 배경색 (파란색 계열) */
+            color: white;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%; /* 원 모양 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+        }
+        .step-content {
+             font-size: 1.05em; /* 본문 내용 약간 크게 */
+             color: #444;
+        }
+        ul.details {
+            list-style-type: none; /* 기본 불릿 제거 */
+            margin-top: 12px;
+            padding-left: 15px; /* 들여쓰기 */
+            border-left: 3px solid #f0f0f0; /* 왼쪽 구분선 */
+            font-size: 0.95em;
+            color: #555;
+        }
+        ul.details li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 18px; /* 아이콘/불릿 공간 */
+        }
+         /* 커스텀 불릿 (화살표) */
+        ul.details li::before {
+            content: "\f105"; /* Font Awesome 화살표 아이콘 */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #3498db; /* 아이콘 색상 */
+            position: absolute;
+            left: 0;
+            top: 1px;
+        }
+        /* LED 색상 강조 */
+        .led-red { color: #e74c3c; font-weight: 500; }
+        .led-green { color: #2ecc71; font-weight: 500; }
+        .led-blue { color: #3498db; font-weight: 500; }
+        .highlight {
+            font-weight: 500; /* 중간 굵기 */
+            color: #16a085; /* 다른 강조색 (민트색 계열) */
+        }
+        .icon {
+            margin-right: 5px; /* 아이콘 오른쪽 여백 */
+            color: #555; /* 아이콘 기본 색상 */
+            width: 1.1em; /* 아이콘 너비 고정 (정렬 도움) */
+            display: inline-block; /* 너비 적용 위해 */
+            text-align: center;
+        }
+        /* 반응형 디자인 (작은 화면) */
+        @media (max-width: 600px) {
+            .manual-container {
+                padding: 20px 25px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            li.step-card {
+                padding: 15px 20px 15px 55px; /* 작은 화면에서 패딩 조정 */
+            }
+             li.step-card::before {
+                left: 15px;
+                top: 15px;
+                width: 25px;
+                height: 25px;
+                font-size: 0.9em;
+            }
+            ul.details {
+                padding-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="manual-container">
+        <h1><i class="fas fa-book-open icon"></i>사용 설명서</h1>
+
+        <ol class="steps">
+            <li class="step-card">
+                <div class="step-content">
+                    <i class="fas fa-plug icon"></i>어뎁터 삽입부에 <span class="highlight">DC 24V 어뎁터</span> 삽입 후 <i class="fas fa-power-off icon"></i><span class="highlight">전원 스위치</span>를 눌러 전원 공급을 합니다.
+                </div>
+                <ul class="details">
+                    <li>본체 LED <span class="led-red">빨간불</span> 점등</li>
+                </ul>
+            </li>
+            <li class="step-card">
+                <div class="step-content">
+                    <i class="fas fa-mobile-alt icon"></i><span class="highlight">리모컨 전원</span> 작동 후 <span class="highlight">듀얼콕 초기 값</span>이 설정 됩니다.
+                </div>
+                <ul class="details">
+                    <li><i class="fas fa-volume-up icon"></i><span class="highlight">삑</span> 하는 부저음 과 본체 LED 에 <span class="led-green">초록</span>, <span class="led-red">빨강</span>, <span class="led-red">빨강</span> 이 점등 됩니다.</li>
+                    <li>듀얼콕 초기 설정 값: <span class="highlight">강도 (약)</span>, <span class="highlight">시간 (5분)</span></li>
+                </ul>
+            </li>
+            <li class="step-card">
+                <div class="step-content">
+                    <i class="fas fa-play-circle icon"></i><span class="highlight">운동 모드</span>를 선택 후 작동 시킵니다.
+                </div>
+                <ul class="details">
+                    <li><span class="led-green">초록색</span> 점등 → 운동 시작 시 <span class="led-green">초록색 점멸등</span>: <span class="highlight">정상 작동</span></li>
+                    <li><i class="far fa-clock icon"></i>운동 시간에 따른 LED 색상 변경 (<span class="highlight">5분 기준</span> <span class="led-red">빨강</span>→<span class="led-green">초록</span>→<span class="led-blue">파랑</span>)</li>
+                    <li><i class="fas fa-bolt icon"></i>운동 강도에 따른 LED 색상 변경 (<span class="highlight">약 기준</span> <span class="led-red">빨강</span>→<span class="led-green">초록</span>→<span class="led-blue">파랑</span>)</li>
+                </ul>
+            </li>
+            <li class="step-card">
+                <div class="step-content">
+                    <i class="fas fa-stop-circle icon"></i>운동 중 리모컨에 있는 <span class="highlight">운동 방법 버튼</span>을 한번 더 누르게 되면 진행중인 운동은 <span class="highlight">멈추게 됩니다.</span>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+</body>
+</html>
